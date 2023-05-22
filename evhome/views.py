@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from evhome.models import AdminAuthTokens  # Replace "evhome" with your app name
+from evhome.models import AdminAuthTokens 
 from django.http import JsonResponse
 
 def admin_auth_tokens(request):
-    tokens = AdminAuthTokens.objects.all()[:10]  # Fetch only 10 rows
+    tokens = AdminAuthTokens.objects.all()[:10]
 
     token_list = []
     for token in tokens:
@@ -27,3 +27,12 @@ def admin_auth_tokens(request):
     }
 
     return JsonResponse(response_data)
+
+'''
+from django.shortcuts import render
+from evhome.models import AdminAuthTokens 
+
+def admin_auth_tokens(request):
+    tokens = AdminAuthTokens.objects.all()
+    return render(request, 'evhome/admin_auth_tokens.html', {'tokens': tokens})
+'''
