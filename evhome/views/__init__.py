@@ -3,3 +3,6 @@ from .authgroups import AuthGroupListView
 from .authtokens import AuthTokensListView
 from .authuser import AuthUserListView
 from .chargepointlocations import ChargePointLocationsListView
+from .chargepointlocationownerships import ChargePointLocationsOwnershipsListView
+from .carbrand import CarBrandListView
+from .carmodel import CarModelListView
