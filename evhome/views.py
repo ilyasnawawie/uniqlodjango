@@ -1,23 +1,39 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
 from django.core import serializers
-from evhome.models import AdminAuthTokens, AuthTokens
+from evhome.models import AdminAuthTokens, AuthTokens, ChargePointLocations, AuthGroup, AuthUser
 
-def admin_auth_tokens(request):
+def items_list(request):
     page = request.GET.get('page', 1)
     page_size = request.GET.get('page_size', 10)
 
     if request.path == '/auth_tokens/':
-        TokenModel = AuthTokens
-    else:
-        TokenModel = AdminAuthTokens
+        ItemModel = AuthTokens
+        model_name = 'tokens'
+        message = 'Got tokens.'
+    elif request.path == '/charge_point_locations/':
+        ItemModel = ChargePointLocations
+        model_name = 'charge point locations'
+        message = 'Got charge point locations.'
+    elif request.path ==  '/admin_auth_tokens/':
+        ItemModel = AdminAuthTokens
+        model_name = 'admin tokens'
+        message = 'Got admin tokens.'
+    elif request.path ==  '/auth_groups/':
+        ItemModel = AuthGroup
+        model_name = 'auth groups'
+        message = 'Got auth groups.'
+    elif request.path == '/auth_user/':
+        ItemModel = AuthUser
+        model_name= 'auth user'
+        message = "Got auth user"
 
-    tokens = TokenModel.objects.all()
+    items = ItemModel.objects.all()
 
-    paginator = Paginator(tokens, page_size)
+    paginator = Paginator(items, page_size)
 
     try:
-        token_page = paginator.page(page)
+        item_page = paginator.page(page)
     except (PageNotAnInteger, EmptyPage):
         response_data = {
             'message': 'Invalid page number',
@@ -25,18 +41,18 @@ def admin_auth_tokens(request):
         }
         return JsonResponse(response_data, status=400)
 
-    token_list = serializers.serialize('python', token_page, fields=('id', 'user_id', 'created_at'))
+    item_list = serializers.serialize('python', item_page)
 
     response_data = {
         'data': {
-            'tokens': token_list
+            model_name: item_list
         },
         'meta': {
-            'total': tokens.count(),
-            'from': token_page.start_index(),
-            'to': token_page.end_index()
+            'total': items.count(),
+            'from': item_page.start_index(),
+            'to': item_page.end_index()
         },
-        'message': 'Got authentication tokens.',
+        'message': message,
         'status': 'ok'
     }
 
