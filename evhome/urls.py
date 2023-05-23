@@ -5,5 +5,6 @@ app_name = 'evhome'
 
 urlpatterns = [
     path('admin_auth_tokens/', admin_auth_tokens, name='admin_auth_tokens'),
+    path('auth_tokens/', admin_auth_tokens, name='auth_tokens'),  # Add this line
     # ...
 ]
