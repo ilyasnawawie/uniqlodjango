@@ -30,7 +30,6 @@ class ChargePointPort(models.Model):
                f"Latest Meter Value: {self.latest_meter_value}"
 
 class ChargePointPortStatus(models.Model):
-    # Foreign key to ChargePointPort
     charge_point_port = models.ForeignKey(ChargePointPort, on_delete=models.CASCADE)
     charge_point_port_status_type_id = models.IntegerField()
     charge_point_port_error_code_type_id = models.IntegerField()
@@ -58,7 +57,6 @@ class ChargePointPortStatusTypes(models.Model):
                f"Name: {self.name}"
 
 class ChargePointPortPrices(models.Model):
-    # Foreign key to ChargePointPort
     charge_point_port = models.ForeignKey(ChargePointPort, on_delete=models.CASCADE)
     price = models.FloatField()
 
@@ -71,7 +69,6 @@ class ChargePointPortPrices(models.Model):
                f"Price: {self.price}"
 
 class ChargePointPortMeterValues(models.Model):
-    # Foreign key to ChargePointPort
     charge_point_port = models.ForeignKey(ChargePointPort, on_delete=models.CASCADE)
     energy_active_import_register = models.FloatField()
     power_active_import = models.FloatField()

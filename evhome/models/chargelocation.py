@@ -1,5 +1,5 @@
 from django.db import models
-
+from .usergroups import UserGroup
 
 class ChargePointLocations(models.Model):
     id = models.AutoField(primary_key=True)
@@ -23,8 +23,7 @@ class ChargePointLocations(models.Model):
 class ChargePointLocationOwnerships(models.Model):
     id = models.AutoField(primary_key=True)
     charge_point_location = models.ForeignKey(ChargePointLocations, on_delete=models.CASCADE, db_column='charge_point_location_id')
-    # If you have a UserGroup model, you can also create a ForeignKey relationship here
-    user_group_id = models.IntegerField()
+    user_group = models.ForeignKey(UserGroup, related_name='ownerships', on_delete=models.CASCADE)
     is_private = models.BooleanField()
 
     class Meta:

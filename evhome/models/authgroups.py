@@ -13,7 +13,6 @@ class AuthGroup(models.Model):
 class AuthGroupPermission(models.Model):
     id = models.AutoField(primary_key=True)
     group = models.ForeignKey(AuthGroup, on_delete=models.CASCADE, db_column='group_id')
-    # If you have a Permission model, you can also create a ForeignKey relationship here
     permission_id = models.IntegerField()
 
     class Meta:
