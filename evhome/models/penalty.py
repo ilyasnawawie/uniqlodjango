@@ -10,6 +10,8 @@ class PenaltyStatusTypes(models.Model):
 
     class Meta:
         db_table = "penalty_status_types"
+        verbose_name = "Penalty Status Type"
+        verbose_name_plural = "Penalty Status Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -25,6 +27,8 @@ class Penalties(models.Model):
 
     class Meta:
         db_table = "penalties"
+        verbose_name = "Penalty"
+        verbose_name_plural = "Penalties"
 
     def __str__(self):
         return f"ID: {self.id}, Type: {self.type}, User ID: {self.user.id}, Order ID: {self.order.id}, Penalty No: {self.penalty_no}, Timestamp: {self.timestamp}"
@@ -40,6 +44,8 @@ class PenaltyCharges(models.Model):
 
     class Meta:
         db_table = "penalty_charges"
+        verbose_name = "Penalty Charge"
+        verbose_name_plural = "Penalty Charges"
 
     def __str__(self):
         return f"ID: {self.id}, Charge Point Port ID: {self.charge_point_port.id}, Start Time: {self.start_time}, Price: {self.price}"
@@ -58,6 +64,8 @@ class PenaltyStatus(models.Model):
 
     class Meta:
         db_table = "penalty_status"
+        verbose_name = "Penalty Status"
+        verbose_name_plural = "Penalty Statuses"
 
     def __str__(self):
         return f"ID: {self.id}, Penalty ID: {self.penalty.id}, Penalty Status Type ID: {self.penalty_status_type.id}, Timestamp: {self.timestamp}, Amount: {self.amount}"

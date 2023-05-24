@@ -1,8 +1,10 @@
 from .base import ItemListView
 from evhome.models.carbrand_model import CarBrand
 
-
 class CarBrandListView(ItemListView):
     model = CarBrand
-    model_name = "car brand"
-    message = "Got car brand."
+    model_name = CarBrand._meta.verbose_name_plural
+
+    def get(self, request):
+        self.message = f"Got {self.model_name}."
+        return super().get(request)

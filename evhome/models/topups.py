@@ -9,6 +9,8 @@ class TopUpType(models.Model):
 
     class Meta:
         db_table = "top_up_types"
+        verbose_name = "Top Up Type"
+        verbose_name_plural = "Top Up Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -31,6 +33,8 @@ class TopUp(models.Model):
 
     class Meta:
         db_table = "top_ups"
+        verbose_name = "Top Up"
+        verbose_name_plural = "Top Ups"
 
     def __str__(self):
         return f"ID: {self.id}, Type ID: {self.type.id}, User ID: {self.user.id}, Top-Up No: {self.top_up_no}, Top-Up Type ID: {self.top_up_type.id}, User Group User ID: {self.user_group_user.id}, Operated by User ID: {self.operated_by.id}"
@@ -42,6 +46,8 @@ class TopUpStatusType(models.Model):
 
     class Meta:
         db_table = "top_up_status_types"
+        verbose_name = "Top Up Status Type"
+        verbose_name_plural = "Top Up Status Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -58,6 +64,8 @@ class TopUpStatus(models.Model):
 
     class Meta:
         db_table = "top_up_status"
+        verbose_name = "Top Up Status"
+        verbose_name_plural = "Top Up Statuses"
 
     def __str__(self):
         return f"ID: {self.id}, Top-Up ID: {self.top_up.id}, Top-Up Status Type ID: {self.top_up_status_type.id}, Timestamp: {self.timestamp}, Amount: {self.amount}"

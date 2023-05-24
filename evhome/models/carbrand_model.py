@@ -10,6 +10,8 @@ class CarBrand(models.Model):
 
     class Meta:
         db_table = "car_brands"
+        verbose_name = "Car Brand"
+        verbose_name_plural = "Car Brands"
 
     def __str__(self):
         return f"Car Brand: {self.name}\n" f"ID: {self.id}"
@@ -26,6 +28,8 @@ class CarModel(models.Model):
 
     class Meta:
         db_table = "car_models"
+        verbose_name = "Car Model"
+        verbose_name_plural = "Car Models"
 
     def __str__(self):
         return (
@@ -47,6 +51,8 @@ class UserCar(models.Model):
 
     class Meta:
         db_table = "user_cars"
+        verbose_name = "User Car"
+        verbose_name_plural = "User Cars"
 
     def __str__(self):
         return (

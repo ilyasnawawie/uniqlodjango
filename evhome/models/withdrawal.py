@@ -9,6 +9,8 @@ class WithdrawalStatusType(models.Model):
 
     class Meta:
         db_table = "withdrawal_status_types"
+        verbose_name = "Withdrawal Status Type"
+        verbose_name_plural = "Withdrawal Status Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -20,6 +22,8 @@ class WithdrawalType(models.Model):
 
     class Meta:
         db_table = "withdrawal_types"
+        verbose_name = "Withdrawal Type"
+        verbose_name_plural = "Withdrawal Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -42,6 +46,8 @@ class Withdrawal(models.Model):
 
     class Meta:
         db_table = "withdrawals"
+        verbose_name = "Withdrawal"
+        verbose_name_plural = "Withdrawals"
 
     def __str__(self):
         return f"ID: {self.id}, Type ID: {self.type.id}, User ID: {self.user.id}, Withdrawal No: {self.withdrawal_no}, Withdrawal Type ID: {self.withdrawal_type.id}, User Group User ID: {self.user_group_user.id}, Operated by User ID: {self.operated_by.id}"
@@ -59,7 +65,9 @@ class WithdrawalStatus(models.Model):
     amount = models.FloatField()
 
     class Meta:
-        db_table = "withdrawal_status"
+        db_table = db_table = "withdrawal_status"
+        verbose_name = "Withdrawal Status"
+        verbose_name_plural = "Withdrawal Statuses"
 
     def __str__(self):
         return f"ID: {self.id}, Withdrawal ID: {self.withdrawal.id}, Withdrawal Status Type ID: {self.withdrawal_status_type.id}, Timestamp: {self.timestamp}, Amount: {self.amount}"

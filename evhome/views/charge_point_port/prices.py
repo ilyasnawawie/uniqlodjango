@@ -1,8 +1,10 @@
 from .base import ItemListView
 from evhome.models.chargepointport import ChargePointPortPrices
 
-
 class ChargePointPortPricesListView(ItemListView):
     model = ChargePointPortPrices
-    model_name = "charge point port prices"
-    message = "Got charge point port prices."
+    model_name = ChargePointPortPrices._meta.verbose_name_plural
+
+    def get(self, request):
+        self.message = f"Got {self.model_name}."
+        return super().get(request)

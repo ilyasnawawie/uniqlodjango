@@ -20,6 +20,7 @@ class TokenModel(models.Model):
 class AdminAuthTokens(TokenModel):
     class Meta:
         db_table = "admin_auth_tokens"
+        verbose_name_plural = "admin auth tokens"
 
     def __str__(self):
         return f"Admin Auth Token\n{super().__str__()}"
@@ -28,6 +29,7 @@ class AdminAuthTokens(TokenModel):
 class AuthTokens(TokenModel):
     class Meta:
         db_table = "auth_tokens"
+        verbose_name_plural = "auth tokens"
 
     def __str__(self):
         return f"Auth Token\n{super().__str__()}"

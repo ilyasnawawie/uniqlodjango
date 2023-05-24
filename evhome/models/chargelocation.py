@@ -12,6 +12,8 @@ class ChargePointLocations(models.Model):
 
     class Meta:
         db_table = "charge_point_locations"
+        verbose_name = "Charge Point Location"
+        verbose_name_plural = "Charge Point Locations"
 
     def __str__(self):
         return (
@@ -35,6 +37,8 @@ class ChargePointLocationOwnerships(models.Model):
 
     class Meta:
         db_table = "charge_point_location_ownerships"
+        verbose_name = "Charge Point Location Ownership"
+        verbose_name_plural = "Charge Point Location Ownerships"
 
     def __str__(self):
         return (
@@ -65,6 +69,8 @@ class ChargePoints(models.Model):
 
     class Meta:
         db_table = "charge_points"
+        verbose_name = "Charge Point"
+        verbose_name_plural = "Charge Points"
 
     def __str__(self):
         return (

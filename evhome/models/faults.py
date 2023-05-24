@@ -10,6 +10,8 @@ class FaultTypes(models.Model):
 
     class Meta:
         db_table = "fault_types"
+        verbose_name = "Fault Type"
+        verbose_name_plural = "Fault Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -37,6 +39,8 @@ class Faults(models.Model):
 
     class Meta:
         db_table = "faults"
+        verbose_name = "Fault"
+        verbose_name_plural = "Faults"
 
     def __str__(self):
         return f"ID: {self.id}, User ID: {self.user.id}, Fault Type ID: {self.fault_type.id}, Charge Point Location ID: {self.charge_point_location.id}, Charge Point ID: {self.charge_point.id}, Charge Point Port ID: {self.charge_point_port.id}, Timestamp: {self.timestamp}, Description: {self.description}"

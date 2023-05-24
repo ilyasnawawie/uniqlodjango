@@ -16,6 +16,8 @@ class ChargePointPort(models.Model):
 
     class Meta:
         db_table = "charge_point_ports"
+        verbose_name = "Charge Point Port"
+        verbose_name_plural = "Charge Point Ports"
 
     def __str__(self):
         return (
@@ -41,6 +43,8 @@ class ChargePointPortStatus(models.Model):
 
     class Meta:
         db_table = "charge_point_port_status"
+        verbose_name = "Charge Point Port Status"
+        verbose_name_plural = "Charge Point Port Statuses"
 
     def __str__(self):
         return (
@@ -58,6 +62,8 @@ class ChargePointPortStatusTypes(models.Model):
 
     class Meta:
         db_table = "charge_point_port_status_types"
+        verbose_name = "Charge Point Port Status Type"
+        verbose_name_plural = "Charge Point Port Status Types"
 
     def __str__(self):
         return f"ID: {self.id}\n" f"Name: {self.name}"
@@ -69,6 +75,8 @@ class ChargePointPortPrices(models.Model):
 
     class Meta:
         db_table = "charge_point_port_prices"
+        verbose_name = "Charge Point Port Price"
+        verbose_name_plural = "Charge Point Port Prices"
 
     def __str__(self):
         return (
@@ -88,6 +96,8 @@ class ChargePointPortMeterValues(models.Model):
 
     class Meta:
         db_table = "charge_point_port_meter_values"
+        verbose_name = "Charge Point Port Meter Value"
+        verbose_name_plural = "Charge Point Port Meter Values"
 
     def __str__(self):
         return (
@@ -107,6 +117,8 @@ class ChargePointPortErrorCodeTypes(models.Model):
 
     class Meta:
         db_table = "charge_point_port_error_code_types"
+        verbose_name = "Charge Point Port Error Code Type"
+        verbose_name_plural = "Charge Point Port Error Code Types"
 
     def __str__(self):
         return f"ID: {self.id}\n" f"Name: {self.name}"

@@ -9,6 +9,8 @@ class OrderTypes(models.Model):
 
     class Meta:
         db_table = "order_types"
+        verbose_name = "Order Type"
+        verbose_name_plural = "Order Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -20,6 +22,8 @@ class OrderStatusTypes(models.Model):
 
     class Meta:
         db_table = "order_status_types"
+        verbose_name = "Order Status Type"
+        verbose_name_plural = "Order Status Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -31,6 +35,8 @@ class OrderStatusReasonTypes(models.Model):
 
     class Meta:
         db_table = "order_status_reason_types"
+        verbose_name = "Order Status Reason Type"
+        verbose_name_plural = "Order Status Reason Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -51,6 +57,8 @@ class Orders(models.Model):
 
     class Meta:
         db_table = "orders"
+        verbose_name = "Order"
+        verbose_name_plural = "Orders"
 
     def __str__(self):
         return f"ID: {self.id}, Type: {self.type}, User ID: {self.user.id}, Charge Point Port ID: {self.charge_point_port.id}, Order No: {self.order_no}, Order Type ID: {self.order_type.id}, Timestamp: {self.timestamp}"
@@ -71,6 +79,8 @@ class OrderStatus(models.Model):
 
     class Meta:
         db_table = "order_status"
+        verbose_name = "Order Status"
+        verbose_name_plural = "Order Statuses"
 
     def __str__(self):
         return f"ID: {self.id}, Order ID: {self.order.id}, Order Status Type ID: {self.order_status_type.id}, Timestamp: {self.timestamp}, Meter Value: {self.meter_value}, Amount: {self.amount}, Reason Type ID: {self.reason_type.id}"

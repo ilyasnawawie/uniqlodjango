@@ -9,6 +9,8 @@ class WalletTransactionType(models.Model):
 
     class Meta:
         db_table = "wallet_transaction_types"
+        verbose_name = "Wallet Transaction Type"
+        verbose_name_plural = "Wallet Transaction Types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -24,6 +26,8 @@ class Wallet(models.Model):
 
     class Meta:
         db_table = "wallets"
+        verbose_name = "Wallet"
+        verbose_name_plural = "Wallets"
 
     def __str__(self):
         return f"ID: {self.id}, User ID: {self.user.id}, Balance: {self.balance}, User Group User ID: {self.user_group_user.id}"
