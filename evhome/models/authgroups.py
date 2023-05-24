@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class AuthGroup(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
@@ -11,10 +10,10 @@ class AuthGroup(models.Model):
     def __str__(self):
         return f"ID: {self.id}\n" f"Name: {self.name}"
 
-
 class AuthGroupPermission(models.Model):
     id = models.AutoField(primary_key=True)
-    group_id = models.IntegerField()
+    group = models.ForeignKey(AuthGroup, on_delete=models.CASCADE, db_column='group_id')
+    # If you have a Permission model, you can also create a ForeignKey relationship here
     permission_id = models.IntegerField()
 
     class Meta:
@@ -23,6 +22,6 @@ class AuthGroupPermission(models.Model):
     def __str__(self):
         return (
             f"ID: {self.id}\n"
-            f"Group ID: {self.group_id}\n"
+            f"Group ID: {self.group.id}\n"
             f"Permission ID: {self.permission_id}"
         )

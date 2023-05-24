@@ -14,7 +14,7 @@ class CarBrand(models.Model):
 
 class CarModel(models.Model):
     id = models.AutoField(primary_key=True)
-    car_brand_id = models.IntegerField()
+    car_brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE, db_column='car_brand_id')
     name = models.CharField(max_length=30)
     year = models.IntegerField()
     battery_capacity = models.FloatField()
@@ -26,7 +26,7 @@ class CarModel(models.Model):
         return (
             f"Car Model: {self.name}\n"
             f"ID: {self.id}\n"
-            f"Car Brand ID: {self.car_brand_id}\n"
+            f"Car Brand ID: {self.car_brand.id}\n"
             f"Year: {self.year}\n"
             f"Battery Capacity: {self.battery_capacity}"
         )
