@@ -4,8 +4,8 @@ from .car_urls import urlpatterns as car_patterns
 from .charge_point_port_urls import urlpatterns as chargepointport_patterns
 
 urlpatterns = (
-    auth_patterns +
-    chargepointlocations_patterns +
-    car_patterns +
-    chargepointport_patterns
+    auth_patterns
+    + chargepointlocations_patterns
+    + car_patterns
+    + chargepointport_patterns
 )

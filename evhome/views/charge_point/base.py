@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.exceptions import FieldError
+from django.forms.models import model_to_dict
 from django.http import JsonResponse
-from django.core import serializers
 from django.views import View
 
 
@@ -10,10 +11,32 @@ class ItemListView(View):
     message = ""
 
     def get(self, request):
-        page = request.GET.get("page", 1)
-        page_size = request.GET.get("page_size", 10)
+        page = request.GET.get("page", "1")
+        page_size = request.GET.get("page_size", "10")
 
-        items = self.model.objects.all()
+        if not page:
+            page = "1"
+        if not page_size:
+            page_size = "10"
+
+        try:
+            page = int(page)
+            page_size = int(page_size)
+        except ValueError:
+            response_data = {"message": "Invalid page or page size", "status": "error"}
+            return JsonResponse(response_data, status=400)
+
+        order = request.GET.get("order", "asc")
+        order_by = request.GET.get("order_by", "id")
+
+        if order == "desc":
+            order_by = "-" + order_by
+
+        try:
+            items = self.model.objects.all().order_by(order_by)
+        except FieldError:
+            response_data = {"message": f"Invalid field: {order_by}", "status": "error"}
+            return JsonResponse(response_data, status=400)
 
         paginator = Paginator(items, page_size)
 
@@ -23,7 +46,7 @@ class ItemListView(View):
             response_data = {"message": "Invalid page number", "status": "error"}
             return JsonResponse(response_data, status=400)
 
-        item_list = serializers.serialize("python", item_page)
+        item_list = [model_to_dict(item) for item in item_page]
 
         response_data = {
             "data": {self.model_name: item_list},

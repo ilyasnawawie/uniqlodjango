@@ -8,7 +8,7 @@ class WalletTransactionType(models.Model):
     name = models.CharField(max_length=10)
 
     class Meta:
-        db_table = 'wallet_transaction_types'
+        db_table = "wallet_transaction_types"
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.name}"
@@ -16,13 +16,14 @@ class WalletTransactionType(models.Model):
 
 class Wallet(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, related_name='wallets', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="wallets", on_delete=models.CASCADE)
     balance = models.FloatField()
-    user_group_user = models.ForeignKey(UserGroupUser, related_name='wallets', on_delete=models.CASCADE)
+    user_group_user = models.ForeignKey(
+        UserGroupUser, related_name="wallets", on_delete=models.CASCADE
+    )
 
     class Meta:
-        db_table = 'wallets'
+        db_table = "wallets"
 
     def __str__(self):
         return f"ID: {self.id}, User ID: {self.user.id}, Balance: {self.balance}, User Group User ID: {self.user_group_user.id}"
-

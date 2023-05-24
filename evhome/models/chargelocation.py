@@ -1,6 +1,7 @@
 from django.db import models
 from .usergroups import UserGroup
 
+
 class ChargePointLocations(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
@@ -22,8 +23,14 @@ class ChargePointLocations(models.Model):
 
 class ChargePointLocationOwnerships(models.Model):
     id = models.AutoField(primary_key=True)
-    charge_point_location = models.ForeignKey(ChargePointLocations, on_delete=models.CASCADE, db_column='charge_point_location_id')
-    user_group = models.ForeignKey(UserGroup, related_name='ownerships', on_delete=models.CASCADE)
+    charge_point_location = models.ForeignKey(
+        ChargePointLocations,
+        on_delete=models.CASCADE,
+        db_column="charge_point_location_id",
+    )
+    user_group = models.ForeignKey(
+        UserGroup, related_name="ownerships", on_delete=models.CASCADE
+    )
     is_private = models.BooleanField()
 
     class Meta:
@@ -37,9 +44,14 @@ class ChargePointLocationOwnerships(models.Model):
             f"Is Private: {self.is_private}"
         )
 
+
 class ChargePoints(models.Model):
     id = models.AutoField(primary_key=True)
-    charge_point_location = models.ForeignKey(ChargePointLocations, on_delete=models.CASCADE, db_column='charge_point_location_id')
+    charge_point_location = models.ForeignKey(
+        ChargePointLocations,
+        on_delete=models.CASCADE,
+        db_column="charge_point_location_id",
+    )
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     serial_number = models.CharField(max_length=25)
