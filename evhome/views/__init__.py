@@ -2,8 +2,6 @@ from .adminauthtokens import AdminAuthTokensListView
 from .authgroups import AuthGroupListView
 from .authtokens import AuthTokensListView
 from .authuser import AuthUserListView
-from .chargepointlocations import ChargePointLocationsListView
-from .chargepointlocationownerships import ChargePointLocationsOwnershipsListView
 from .carbrand import CarBrandListView
 from .carmodel import CarModelListView
 from .charge_point_port_views.chargepointport import ChargePointPort
@@ -13,3 +11,6 @@ from .charge_point_port_views.metervalues import ChargePointPortMeterValuesListV
 from .charge_point_port_views.prices import ChargePointPortPricesListView
 from .charge_point_port_views.status import ChargePointPortStatusListView
 from .charge_point_port_views.statustypes import ChargePointPortStatusTypesListView
+from .chargepointlocations import ChargePointLocationsListView
+from .chargepointlocationownerships import ChargePointLocationsOwnershipsListView
+from .chargepoint import ChargePointListView

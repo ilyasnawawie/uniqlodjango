@@ -1,4 +1,4 @@
-from .base import ItemListView
+from ..base import ItemListView
 from evhome.models.chargepointport import ChargePointPortErrorCodeTypes
 
 class ChargePointPortErrorCodeTypesListView(ItemListView):
