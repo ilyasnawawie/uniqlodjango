@@ -14,3 +14,14 @@ from .charge_point_port.statustypes import ChargePointPortStatusTypesListView
 from .charge_point.locations import ChargePointLocationsListView
 from .charge_point.location_ownerships import ChargePointLocationsOwnershipsListView
 from .charge_point.charge_point import ChargePointListView
+
+# RECENT
+from .fault.faults import FaultsListView
+from .fault.types import FaultTypesListView
+from .orders.orders import OrdersListView
+from .orders.status import OrderStatusListView
+from .orders.types import OrderTypesListView
+from .orders.status_types import OrderStatusListView
+from .orders.status_reason_types import OrderStatusReasonTypesListView
+
+
