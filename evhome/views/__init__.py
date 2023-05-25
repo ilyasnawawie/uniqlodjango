@@ -14,6 +14,10 @@ from .charge_point_port.statustypes import ChargePointPortStatusTypesListView
 from .charge_point.locations import ChargePointLocationsListView
 from .charge_point.location_ownerships import ChargePointLocationsOwnershipsListView
 from .charge_point.charge_point import ChargePointListView
+from .topups import topup
+from .topups import type
+from .topups import status
+from .topups import status_type
 
 # RECENT
 from .fault.faults import FaultsListView
@@ -27,5 +31,10 @@ from .penalty.penalties import PenaltiesListView
 from .penalty.charges import PenaltyChargesListView
 from .penalty.status import PenaltyStatusListView
 from .penalty.status_types import PenaltyStatusTypesListView
+from .reservation.reservations import ReservationsListView
+from .reservation.order_relations import ReservationsOrderRelationsListView
+from .reservation.status import ReservationsStatusListView
+from .reservation.status_types import ReservationsStatusTypesListView
+
 
 

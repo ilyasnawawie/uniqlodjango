@@ -1,11 +1,13 @@
 from .auth_urls import urlpatterns as auth_patterns
-from .charge_point_locations_urls import urlpatterns as chargepointlocations_patterns
+from .charge_point_locations_urls import urlpatterns as charge_point_locations_patterns
 from .car_urls import urlpatterns as car_patterns
-from .charge_point_port_urls import urlpatterns as chargepointport_patterns
+from .charge_point_port_urls import urlpatterns as charge_point_port_patterns
+from .topups_urls import urlpatterns as top_ups_patterns
 
 urlpatterns = (
     auth_patterns
-    + chargepointlocations_patterns
+    + charge_point_locations_patterns
     + car_patterns
-    + chargepointport_patterns
+    + charge_point_port_patterns
+    + top_ups_patterns
 )
