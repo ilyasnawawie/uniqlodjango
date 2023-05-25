@@ -1,12 +1,5 @@
 from django.urls import path
-from ..views import (
-    ChargePointPortListView,
-    ChargePointPortErrorCodeTypesListView,
-    ChargePointPortMeterValuesListView,
-    ChargePointPortPricesListView,
-    ChargePointPortStatusListView,
-    ChargePointPortStatusTypesListView,
-)
+from ..views.charge_point_port import *
 
 urlpatterns = [
     path(

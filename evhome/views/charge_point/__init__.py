@@ -1,3 +1,3 @@
 from .charge_point import ChargePointListView
-from .location_ownerships import ChargePointLocationOwnerships
+from .location_ownerships import ChargePointLocationsOwnershipsListView
 from .locations import ChargePointLocationsListView

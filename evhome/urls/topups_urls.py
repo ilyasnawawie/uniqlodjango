@@ -1,5 +1,5 @@
 from django.urls import path
-from ..views.topups import TopUpListView, TopUpStatusTypeListView, TopUpStatusListView, TopUpTypeListView
+from ..views.topups import *
 
 urlpatterns = [
     path("topup/", TopUpListView.as_view(), name="top_up"),

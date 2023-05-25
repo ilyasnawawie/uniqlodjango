@@ -1,10 +1,5 @@
 from django.urls import path
-from ..views.auth import (
-    AdminAuthTokensListView,
-    AuthGroupListView,
-    AuthTokensListView,
-    AuthUserListView,
-)
+from ..views.auth import *
 
 urlpatterns = [
     path(

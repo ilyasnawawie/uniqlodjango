@@ -1,40 +1,25 @@
-from .auth.admintokens import AdminAuthTokensListView
-from .auth.groups import AuthGroupListView
-from .auth.tokens import AuthTokensListView
-from .auth.user import AuthUserListView
-from .car.brand import CarBrandListView
-from .car.model import CarModelListView
-from .car.usercar import UserCarListView
-from .charge_point_port.chargepointport import ChargePointPortListView
-from .charge_point_port.errorcodetypes import ChargePointPortErrorCodeTypesListView
-from .charge_point_port.metervalues import ChargePointPortMeterValuesListView
-from .charge_point_port.prices import ChargePointPortPricesListView
-from .charge_point_port.status import ChargePointPortStatusListView
-from .charge_point_port.statustypes import ChargePointPortStatusTypesListView
-from .charge_point.locations import ChargePointLocationsListView
-from .charge_point.location_ownerships import ChargePointLocationsOwnershipsListView
-from .charge_point.charge_point import ChargePointListView
-from .topups import topup
-from .topups import type
-from .topups import status
-from .topups import status_type
+# AUTH MODULES
+from .auth import admintokens, groups, tokens, user
 
-# RECENT
-from .fault.faults import FaultsListView
-from .fault.types import FaultTypesListView
-from .orders.orders import OrdersListView
-from .orders.status import OrderStatusListView
-from .orders.types import OrderTypesListView
-from .orders.status_types import OrderStatusListView
-from .orders.status_reason_types import OrderStatusReasonTypesListView
-from .penalty.penalties import PenaltiesListView
-from .penalty.charges import PenaltyChargesListView
-from .penalty.status import PenaltyStatusListView
-from .penalty.status_types import PenaltyStatusTypesListView
-from .reservation.reservations import ReservationsListView
-from .reservation.order_relations import ReservationsOrderRelationsListView
-from .reservation.status import ReservationsStatusListView
-from .reservation.status_types import ReservationsStatusTypesListView
+# CAR MODULES
+from .car import usercar, model, brand
 
+# CHARGE POINT MODULES
+from .charge_point_port import chargepointport, errorcodetypes, metervalues, prices, status, statustypes
+from .charge_point import charge_point, locations, location_ownerships
 
+# TOP_UP MODULES
+from .topups import topup, type, status, status_type
 
+# RECENTLY ADDED MODULES
+# Faults Module
+from .fault import faults, types
+
+# Orders Module
+from .orders import orders, status, status_types, status_reason_types, types
+
+# Penalty Module
+from .penalty import penalties, charges, status, status_types
+
+# Reservation Module
+from .reservation import reservations, order_relations, status, status_types

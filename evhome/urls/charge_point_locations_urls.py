@@ -1,9 +1,5 @@
 from django.urls import path
-from ..views import (
-    ChargePointLocationsListView,
-    ChargePointLocationsOwnershipsListView,
-    ChargePointListView,
-)
+from ..views.charge_point import *
 
 urlpatterns = [
     path(
