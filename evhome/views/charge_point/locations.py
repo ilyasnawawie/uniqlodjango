@@ -1,6 +1,7 @@
 from .base import ItemListView
 from evhome.models.chargelocation import ChargePointLocations
 
+
 class ChargePointLocationsListView(ItemListView):
     model = ChargePointLocations
     model_name = ChargePointLocations._meta.verbose_name_plural

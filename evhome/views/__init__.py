@@ -4,7 +4,7 @@ from .auth.tokens import AuthTokensListView
 from .auth.user import AuthUserListView
 from .car.brand import CarBrandListView
 from .car.model import CarModelListView
-from .charge_point_port.chargepointport import ChargePointPort
+from .car.usercar import UserCarListView
 from .charge_point_port.chargepointport import ChargePointPortListView
 from .charge_point_port.errorcodetypes import ChargePointPortErrorCodeTypesListView
 from .charge_point_port.metervalues import ChargePointPortMeterValuesListView

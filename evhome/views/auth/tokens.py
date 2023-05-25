@@ -1,6 +1,7 @@
 from .base import ItemListView
 from evhome.models.tokens import AuthTokens
 
+
 class AuthTokensListView(ItemListView):
     model = AuthTokens
     model_name = AuthTokens._meta.verbose_name_plural

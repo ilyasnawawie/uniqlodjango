@@ -1,6 +1,7 @@
 from .base import ItemListView
 from evhome.models.chargepointport import ChargePointPortStatusTypes
 
+
 class ChargePointPortStatusTypesListView(ItemListView):
     model = ChargePointPortStatusTypes
     model_name = ChargePointPortStatusTypes._meta.verbose_name_plural

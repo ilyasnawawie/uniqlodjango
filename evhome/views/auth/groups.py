@@ -1,6 +1,7 @@
 from .base import ItemListView
 from evhome.models.authgroups import AuthGroup
 
+
 class AuthGroupListView(ItemListView):
     model = AuthGroup
     model_name = AuthGroup._meta.verbose_name_plural
