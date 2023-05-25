@@ -1,5 +1,5 @@
 # Auth
-from .auth import admintokens, groups, tokens, user
+from .auth import admintokens, groups, tokens, user, authentication
 
 # Car
 from .car import usercar, model, brand

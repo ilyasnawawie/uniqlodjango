@@ -3,6 +3,7 @@ from .tokens import (
     TokenModel,  # Base token model
     AdminAuthTokens,  # Token model for admin authentication
     AuthTokens,  # Token model for general authentication
+    Users
 )
 
 # Auth Groups
