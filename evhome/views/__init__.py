@@ -23,5 +23,9 @@ from .orders.status import OrderStatusListView
 from .orders.types import OrderTypesListView
 from .orders.status_types import OrderStatusListView
 from .orders.status_reason_types import OrderStatusReasonTypesListView
+from .penalty.penalties import PenaltiesListView
+from .penalty.charges import PenaltyChargesListView
+from .penalty.status import PenaltyStatusListView
+from .penalty.status_types import PenaltyStatusTypesListView
 
 
