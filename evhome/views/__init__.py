@@ -1,25 +1,35 @@
-# AUTH MODULES
+# Auth
 from .auth import admintokens, groups, tokens, user
 
-# CAR MODULES
+# Car
 from .car import usercar, model, brand
 
-# CHARGE POINT MODULES
+# Charge_Point
 from .charge_point_port import chargepointport, errorcodetypes, metervalues, prices, status, statustypes
 from .charge_point import charge_point, locations, location_ownerships
 
-# TOP_UP MODULES
+# Top_up
 from .topups import topup, type, status, status_type
 
-# RECENTLY ADDED MODULES
-# Faults Module
+# RECENT
+
+# Faults
 from .fault import faults, types
 
-# Orders Module
+# Orders
 from .orders import orders, status, status_types, status_reason_types, types
 
-# Penalty Module
+# Penalty
 from .penalty import penalties, charges, status, status_types
 
-# Reservation Module
+# Reservation
 from .reservation import reservations, order_relations, status, status_types
+
+# User_Groups
+from .user_groups import user, user_group_user, user_rfid, user_rfid_status_type, user_group
+
+# Wallets
+from .wallets import wallet, transaction_types
+
+# Withdrawal
+from .withdrawal import withdrawal, status, status_type, type
