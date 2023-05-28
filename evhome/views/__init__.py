@@ -33,3 +33,6 @@ from .wallets import wallet, transaction_types
 
 # Withdrawal
 from .withdrawal import withdrawal, status, status_type, type
+
+# Users
+from .users import users
