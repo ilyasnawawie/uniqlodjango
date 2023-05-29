@@ -52,6 +52,9 @@ class ItemListView(View):
             response_data = {"message": "Invalid page number", "status": "error"}
             return JsonResponse(response_data, status=400)
 
+        # Retrieve the field names from the model
+        field_names = [field.name for field in self.model._meta.get_fields()]
+
         item_list = [model_to_dict(item) for item in item_page]
 
         response_data = {
@@ -60,6 +63,7 @@ class ItemListView(View):
                 "total": items.count(),
                 "from": item_page.start_index(),
                 "to": item_page.end_index(),
+                "columns": field_names,
             },
             "message": self.message,
             "status": "ok",
