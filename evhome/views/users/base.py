@@ -1,9 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.exceptions import FieldError
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.views import View
-from django.db.models import Q
+from django.db.models import Q, ManyToOneRel
 
 
 class ItemListView(View):
@@ -28,21 +27,14 @@ class ItemListView(View):
             response_data = {"message": "Invalid page or page size", "status": "error"}
             return JsonResponse(response_data, status=400)
 
-        order = request.GET.get("order", "asc")
-        order_by = request.GET.get("order_by", "id")
+        fields = self.model._meta.get_fields()
 
-        if order == "desc":
-            order_by = "-" + order_by
+        filter_conditions = Q()
+        for field in fields:
+            if not isinstance(field, ManyToOneRel):
+                filter_conditions |= Q(**{f"{field.name}__icontains": query})
 
-        try:
-            items = self.model.objects.filter(
-                Q(name__icontains=query) |
-                Q(email__icontains=query)
-
-            ).order_by(order_by)
-        except FieldError:
-            response_data = {"message": f"Invalid field: {order_by}", "status": "error"}
-            return JsonResponse(response_data, status=400)
+        items = self.model.objects.filter(filter_conditions)
 
         paginator = Paginator(items, page_size)
 
@@ -52,18 +44,15 @@ class ItemListView(View):
             response_data = {"message": "Invalid page number", "status": "error"}
             return JsonResponse(response_data, status=400)
 
-        # Retrieve the field names from the model
-        field_names = [field.name for field in self.model._meta.get_fields()]
-
         item_list = [model_to_dict(item) for item in item_page]
 
         response_data = {
-            "data": {self.model_name: item_list},
+            "data": item_list,
             "meta": {
                 "total": items.count(),
                 "from": item_page.start_index(),
                 "to": item_page.end_index(),
-                "columns": field_names,
+                "columns": [field.name for field in fields],
             },
             "message": self.message,
             "status": "ok",
