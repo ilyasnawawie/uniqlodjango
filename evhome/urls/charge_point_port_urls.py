@@ -13,22 +13,22 @@ urlpatterns = [
         name="charge_point_port_error_code_types",
     ),
     path(
-        "meter_values/",
+        "charge_point_port_meter_values/",
         ChargePointPortMeterValuesListView.as_view(),
         name="charge_point_port_meter_values",
     ),
     path(
-        "prices/",
+        "charge_point_port_prices/",
         ChargePointPortPricesListView.as_view(),
         name="charge_point_port_prices",
     ),
     path(
-        "status/",
+        "charge_point_port_status/",
         ChargePointPortStatusListView.as_view(),
         name="charge_point_port_status",
     ),
     path(
-        "status_types/",
+        "charge_point_port_status_types/",
         ChargePointPortStatusTypesListView.as_view(),
         name="charge_point_port_status_types",
     ),
