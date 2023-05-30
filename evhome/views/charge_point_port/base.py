@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.exceptions import FieldError
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.views import View
+from django.db.models import Q, ManyToOneRel
+from django.db import models
 
 
 class ItemListView(View):
@@ -13,6 +14,7 @@ class ItemListView(View):
     def get(self, request):
         page = request.GET.get("page", "1")
         page_size = request.GET.get("page_size", "10")
+        query = request.GET.get("query", "")
 
         if not page:
             page = "1"
@@ -26,17 +28,14 @@ class ItemListView(View):
             response_data = {"message": "Invalid page or page size", "status": "error"}
             return JsonResponse(response_data, status=400)
 
-        order = request.GET.get("order", "asc")
-        order_by = request.GET.get("order_by", "id")
+        fields = self.model._meta.get_fields()
 
-        if order == "desc":
-            order_by = "-" + order_by
+        filter_conditions = Q()
+        for field in fields:
+            if not isinstance(field, ManyToOneRel) and not isinstance(field, models.ForeignKey):
+                filter_conditions |= Q(**{f"{field.name}__icontains": query})
 
-        try:
-            items = self.model.objects.all().order_by(order_by)
-        except FieldError:
-            response_data = {"message": f"Invalid field: {order_by}", "status": "error"}
-            return JsonResponse(response_data, status=400)
+        items = self.model.objects.filter(filter_conditions)
 
         paginator = Paginator(items, page_size)
 
@@ -49,11 +48,12 @@ class ItemListView(View):
         item_list = [model_to_dict(item) for item in item_page]
 
         response_data = {
-            "data": {self.model_name: item_list},
+            "data": item_list,
             "meta": {
                 "total": items.count(),
                 "from": item_page.start_index(),
                 "to": item_page.end_index(),
+                "columns": [field.name for field in fields],
             },
             "message": self.message,
             "status": "ok",

@@ -8,9 +8,11 @@ urlpatterns = [
         name="charge_point_locations",
     ),
     path(
-        "charge_location_ownerships/",
+        "charge_point_location_ownerships/",
         ChargePointLocationsOwnershipsListView.as_view(),
         name="charge_location_ownerships",
     ),
-    path("charge_point/", ChargePointListView.as_view(), name="charge_point"),
+    path("charge_point/",
+         ChargePointListView.as_view(),
+         name="charge_point"),
 ]

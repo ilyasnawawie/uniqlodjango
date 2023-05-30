@@ -19,6 +19,7 @@ from .authuser import AuthUser  # Model for authenticated users
 from .chargelocation import (
     ChargePointLocations,  # Model for charge point locations
     ChargePointLocationOwnerships,  # Model for ownership information of charge point locations
+    ChargePoints,
 )
 
 # Car Brand and Model

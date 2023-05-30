@@ -8,7 +8,7 @@ urlpatterns = [
         name="charge_point_port",
     ),
     path(
-        "error_code_types/",
+        "charge_point_port_error_code_types/",
         ChargePointPortErrorCodeTypesListView.as_view(),
         name="charge_point_port_error_code_types",
     ),
