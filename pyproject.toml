@@ -21,6 +21,9 @@ mysql-connector-python = "^8.0.26"
 environ = "^1.0"
 python-dotenv = "^1.0"
 django-cors-headers = "^4.0.0"
+django-extensions = "^3.2.1"
+werkzeug = "^2.3.4"
+pyopenssl = "^23.2.0"
 
 
 [build-system]

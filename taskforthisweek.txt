@@ -1,0 +1,7 @@
+- integrate https into django server
+- sorting for tables
+- sort all columns (sort_by(header key), sort(asc,desc), < keywords) // make api request on sorting
+- pagination (show amount of total page out of how many entries)
+- learn the tables and relationships
+- modify login response from django (add simple message, status) // {"message":"The given data was invalid.","errors":{"email":["These credentials do not match our records."]}}
+- mysql structure and postgre
