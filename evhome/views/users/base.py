@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.views import View
 from django.db.models import Q, ManyToOneRel
 
-
 class ItemListView(View):
     model = None
     model_name = ""
@@ -14,6 +13,8 @@ class ItemListView(View):
         page = request.GET.get("page", "1")
         page_size = request.GET.get("page_size", "10")
         query = request.GET.get("query", "")
+        sort_column = request.GET.get("sortColumn", "")
+        sort_order = request.GET.get("sortOrder", "asc")
 
         if not page:
             page = "1"
@@ -35,6 +36,15 @@ class ItemListView(View):
                 filter_conditions |= Q(**{f"{field.name}__icontains": query})
 
         items = self.model.objects.filter(filter_conditions)
+
+        # Get model's fields names
+        model_field_names = [field.name for field in fields]
+
+        # Apply sorting if a valid sort column is provided
+        if sort_column and sort_column in model_field_names:
+            if sort_order == 'desc':
+                sort_column = f'-{sort_column}'
+            items = items.order_by(sort_column)
 
         paginator = Paginator(items, page_size)
 
