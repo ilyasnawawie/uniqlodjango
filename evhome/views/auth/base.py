@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.views import View
-from django.db.models import Q, ManyToOneRel, ForeignKey
+from django.db.models import Q, ManyToOneRel
 
 class ItemListView(View):
     model = None
@@ -32,7 +32,7 @@ class ItemListView(View):
 
         filter_conditions = Q()
         for field in fields:
-            if not isinstance(field, (ManyToOneRel, ForeignKey)):
+            if not isinstance(field, ManyToOneRel):
                 filter_conditions |= Q(**{f"{field.name}__icontains": query})
 
         items = self.model.objects.filter(filter_conditions)
