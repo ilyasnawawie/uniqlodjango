@@ -7,7 +7,7 @@ if __name__ == "__main__":
     execute_from_command_line([
         "manage.py",
         "runserver_plus",
-        "8000",
+        "443",
         "--cert-file", "cert.pem",
         "--key-file", "key.pem",
     ])
