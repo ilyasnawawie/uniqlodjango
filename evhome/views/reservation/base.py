@@ -2,12 +2,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.views import View
-from django.db.models import Q, ManyToOneRel
+from django.db.models import Q, ManyToOneRel, ForeignKey
+
 
 class ItemListView(View):
     model = None
     model_name = ""
     message = ""
+    secondary_sort_column = ""
 
     def get(self, request):
         page = request.GET.get("page", "1")
@@ -32,19 +34,33 @@ class ItemListView(View):
 
         filter_conditions = Q()
         for field in fields:
-            if not isinstance(field, ManyToOneRel):
+            if not isinstance(field, (ManyToOneRel, ForeignKey)):
                 filter_conditions |= Q(**{f"{field.name}__icontains": query})
 
         items = self.model.objects.filter(filter_conditions)
 
-        # Get model's fields names
+        # Get model's field names
         model_field_names = [field.name for field in fields]
 
-        # Apply sorting if a valid sort column is provided
+        sort_columns = []
         if sort_column and sort_column in model_field_names:
             if sort_order == 'desc':
                 sort_column = f'-{sort_column}'
-            items = items.order_by(sort_column)
+            sort_columns.append(sort_column)
+
+        # Always use 'secondary_sort_column' as a secondary sort column if it's a valid field
+        if self.secondary_sort_column and self.secondary_sort_column in model_field_names:
+            secondary_sort_column = self.secondary_sort_column
+            # Use the primary sort column's sort order for the secondary sort column
+            if sort_column and sort_column.startswith('-'):
+                secondary_sort_column = f'-{secondary_sort_column}'
+            sort_columns.append(secondary_sort_column)
+
+        # Add 'id' as a fallback sort column
+        if 'id' not in sort_columns:
+            sort_columns.append('id')
+
+        items = items.order_by(*sort_columns)
 
         paginator = Paginator(items, page_size)
 

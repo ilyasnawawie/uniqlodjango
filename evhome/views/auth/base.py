@@ -14,8 +14,8 @@ class ItemListView(View):
         page_size = request.GET.get("page_size", "10")
         query = request.GET.get("query", "")
         sort_column = request.GET.get("sortColumn", "")
-        secondary_sort_column = request.GET.get("secondarySortColumn", "")
         sort_order = request.GET.get("sortOrder", "asc")
+        secondary_sort_column = request.GET.get("secondarySortColumn", "")
 
         if not page:
             page = "1"
@@ -48,8 +48,8 @@ class ItemListView(View):
                 sort_column = f'-{sort_column}'
             sort_columns.append(sort_column)
 
-        # Apply secondary sorting if a valid secondary sort column is provided
-        if secondary_sort_column and secondary_sort_column in model_field_names:
+        # Use 'secondary_sort_column' as a secondary sort column if it's a valid field
+        if secondary_sort_column in model_field_names:
             if sort_order == 'desc':
                 secondary_sort_column = f'-{secondary_sort_column}'
             sort_columns.append(secondary_sort_column)

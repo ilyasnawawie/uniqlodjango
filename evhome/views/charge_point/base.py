@@ -4,17 +4,18 @@ from django.http import JsonResponse
 from django.views import View
 from django.db.models import Q, ManyToOneRel, ForeignKey
 
+
 class ItemListView(View):
     model = None
     model_name = ""
     message = ""
+    secondary_sort_column = ""
 
     def get(self, request):
         page = request.GET.get("page", "1")
         page_size = request.GET.get("page_size", "10")
         query = request.GET.get("query", "")
         sort_column = request.GET.get("sortColumn", "")
-        secondary_sort_column = request.GET.get("secondarySortColumn", "")
         sort_order = request.GET.get("sortOrder", "asc")
 
         if not page:
@@ -41,16 +42,17 @@ class ItemListView(View):
         # Get model's field names
         model_field_names = [field.name for field in fields]
 
-        # Apply sorting if a valid sort column is provided
         sort_columns = []
         if sort_column and sort_column in model_field_names:
             if sort_order == 'desc':
                 sort_column = f'-{sort_column}'
             sort_columns.append(sort_column)
 
-        # Apply secondary sorting if a valid secondary sort column is provided
-        if secondary_sort_column and secondary_sort_column in model_field_names:
-            if sort_order == 'desc':
+        # Always use 'secondary_sort_column' as a secondary sort column if it's a valid field
+        if self.secondary_sort_column and self.secondary_sort_column in model_field_names:
+            secondary_sort_column = self.secondary_sort_column
+            # Use the primary sort column's sort order for the secondary sort column
+            if sort_column and sort_column.startswith('-'):
                 secondary_sort_column = f'-{secondary_sort_column}'
             sort_columns.append(secondary_sort_column)
 

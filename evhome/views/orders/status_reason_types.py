@@ -5,6 +5,7 @@ from evhome.models.orders import OrderStatusReasonTypes
 class OrderStatusReasonTypesListView(ItemListView):
     model = OrderStatusReasonTypes
     model_name = OrderStatusReasonTypes._meta.verbose_name_plural
+    secondary_sort_column = 'name'
 
     def get(self, request):
         self.message = f"Got {self.model_name}."
