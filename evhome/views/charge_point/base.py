@@ -10,7 +10,7 @@ class ItemListView(View):
     model_name = ""
     message = ""
     secondary_sort_column = ""
-
+    display_fields = []
     def get(self, request):
         page = request.GET.get("page", "1")
         page_size = request.GET.get("page_size", "10")
@@ -78,7 +78,7 @@ class ItemListView(View):
                 "total": items.count(),
                 "from": item_page.start_index(),
                 "to": item_page.end_index(),
-                "columns": [field.name for field in fields],
+                "columns": self.display_fields,
             },
             "message": self.message,
             "status": "ok",

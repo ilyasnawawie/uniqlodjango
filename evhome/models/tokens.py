@@ -37,7 +37,7 @@ class Users(models.Model):
 class TokenModel(models.Model):
     id = models.CharField(max_length=64, primary_key=True)
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract = True

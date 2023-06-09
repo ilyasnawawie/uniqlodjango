@@ -32,6 +32,7 @@ def login_view(request):
                     user=user
                 )
                 return JsonResponse({'token': token.id,
+                                     'created_at': token.created_at.isoformat(),
                                      'status': 200})
             else:
                 return JsonResponse({'message': 'The given data was invalid.',
